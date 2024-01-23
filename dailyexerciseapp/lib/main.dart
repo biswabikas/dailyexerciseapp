@@ -1,4 +1,8 @@
 import 'package:dailyexerciseapp/constants.dart';
+import 'package:dailyexerciseapp/screens/details_screen.dart';
+import 'package:dailyexerciseapp/widgets/category_card.dart';
+import 'package:dailyexerciseapp/widgets/custom_nav_bar.dart';
+import 'package:dailyexerciseapp/widgets/custom_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -70,18 +74,41 @@ class MyHomeScreen extends StatelessWidget {
                           fontWeight: FontWeight.bold,
                         ),
                   ),
-                  Container(
-                    margin: const EdgeInsets.symmetric(vertical: 30),
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(30),
-                    ),
-                    child: const TextField(
-                      decoration: InputDecoration(
-                        prefixIcon: Icon(Icons.search),
-                        hintText: 'Search',
-                        border: InputBorder.none,
-                      ),
+                  const CustomTextField(),
+                  Expanded(
+                    child: GridView.count(
+                      crossAxisCount: 2,
+                      crossAxisSpacing: 20,
+                      mainAxisSpacing: 20,
+                      children: [
+                        CategoryCard(
+                          svgSrc: 'assets/icons/Hamburger.svg',
+                          title: 'Diet Recommendation',
+                          press: () {},
+                        ),
+                        CategoryCard(
+                          svgSrc: 'assets/icons/Excrecises.svg',
+                          title: 'Kegel Excerices',
+                          press: () {},
+                        ),
+                        CategoryCard(
+                          svgSrc: 'assets/icons/Meditation.svg',
+                          title: 'Meditation',
+                          press: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const DetailsScreen(),
+                              ),
+                            );
+                          },
+                        ),
+                        CategoryCard(
+                          svgSrc: 'assets/icons/yoga.svg',
+                          title: 'Yoga',
+                          press: () {},
+                        ),
+                      ],
                     ),
                   )
                 ],
@@ -90,6 +117,7 @@ class MyHomeScreen extends StatelessWidget {
           ),
         ],
       ),
+      bottomNavigationBar: const CustomNavBar(),
     );
   }
 }
